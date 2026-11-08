@@ -31,7 +31,13 @@ const searchInput = document.querySelector("#search-input");
 
 // Fetch and display GIFs when the button is clicked
 fetchButton.addEventListener("click", async () => {
-  const searchTerm = searchInput.value.trim() || "cats";
+ const searchTerm = searchInput.value.trim();
+ 
+ // Show a message if the search box is empty
+if (searchTerm === "") {
+  gifContainer.innerHTML = "<p>Please enter a keyword to search for GIFs.</p>";
+  return;
+}
 
   const searchEndpoint =
     `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${encodeURIComponent(searchTerm)}&limit=8`;
